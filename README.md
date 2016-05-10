@@ -2,7 +2,7 @@
 
 Experiment with [Seriously.js](http://seriouslyjs.org/) ([Github](https://github.com/brianchirls/Seriously.js/)) to distort some video.
 
-<img src="https://cloud.githubusercontent.com/assets/8388/15158530/654272ce-16be-11e6-8e0a-37439d599a46.gif" style="max-width: 680px">
+<img src="https://cloud.githubusercontent.com/assets/8388/15158530/654272ce-16be-11e6-8e0a-37439d599a46.gif" width="480">
 
 ## to Run:
 
