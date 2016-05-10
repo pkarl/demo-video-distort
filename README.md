@@ -1,6 +1,6 @@
 # TV distortion demo
 
-Experiment with [Seriously.js](https://github.com/brianchirls/Seriously.js/) to distort some video.
+Experiment with [Seriously.js](http://seriouslyjs.org/) ([Github](https://github.com/brianchirls/Seriously.js/)) to distort some video.
 
 ## to Run:
 
