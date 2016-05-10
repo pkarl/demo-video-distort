@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head><title>Seriously.js Tutorial</title></head>
+<style>
+  body, html {
+    height: 100%;
+    padding: 0;
+  }
+  body {
+    text-align: center;
+    background-image: linear-gradient(to bottom, #666666, #1C1C1C);
+  }
+  canvas {
+    margin-top: 1em;
+    border: 10px solid #b8b8b8;
+  }
+</style>
+<body>
+  <video id="rawsource" src="source.mp4" style="max-width: 160px" loop autoplay></video><br/>
+  <canvas id="canvas" width="640" height="480"></canvas>
+
+  <script src="/seriously/seriously.js"></script>
+  <script src="/seriously/effects/seriously.blend.js"></script>
+  <script src="/seriously/effects/seriously.hue-saturation.js"></script>
+  <script src="/seriously/effects/seriously.tvglitch.js"></script>
+  <script src="/seriously/effects/seriously.chroma.js"></script>
+  <script>
+    var videoSource = document.getElementById('rawsource');
+    videoSource.playbackRate = 0.5;
+
+    var seriously = new Seriously();
+    var target = seriously.target('#canvas');
+    var source = seriously.transform('reformat');
+    source.source = '#rawsource';
+		source.mode = 'cover';
+		source.width = target.width;
+		source.height = target.height;
+
+    var invasion = {
+  		tv: seriously.effect('tvglitch'),
+  		blackwhite: seriously.effect('hue-saturation')
+  	};
+
+  	invasion.blackwhite.source = source;
+  	invasion.tv.source = invasion.blackwhite;
+
+  	invasion.blackwhite.saturation = -0.9;
+  	invasion.tv.distortion = 0.02;
+  	invasion.tv.verticalSync = 5;
+  	invasion.tv.scanlines = 0.22;
+  	invasion.tv.lineSync = 0.2;
+  	invasion.tv.frameSharpness = 10.67;
+  	invasion.tv.frameLimit = 0.3644;
+  	invasion.tv.bars = 0.15;
+
+    // connect all our nodes in the right order
+    target.source = invasion.tv;
+    seriously.go();
+
+    setInterval(function() {
+      invasion.tv.lineSync += (Math.random() < 0.5 ? -1 : 1) * Math.random() / 100;
+    }, 50);
+  </script>
+</body>
+</html>
